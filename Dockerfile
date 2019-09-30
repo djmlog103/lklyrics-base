@@ -1,5 +1,5 @@
 FROM php:7.2-fpm-alpine
-
+LABEL version="1.0.0"
 
 RUN apk --update add wget \
   curl \
