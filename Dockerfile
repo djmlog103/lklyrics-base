@@ -1,7 +1,7 @@
 FROM php:7.2-fpm-alpine
-LABEL version="1.0.0"
+LABEL version="1.0.1"
 
-RUN apk --update add wget \
+RUN apk --no-cache add wget \
   curl \
   git \
   grep \
@@ -17,16 +17,14 @@ RUN apk --update add wget \
   g++ \
   cyrus-sasl-dev \
   libgsasl-dev \
-  supervisor
-
-RUN docker-php-ext-install mysqli mbstring pdo pdo_mysql tokenizer xml
-RUN pecl channel-update pecl.php.net \
+  supervisor \
+  && docker-php-ext-install mysqli mbstring pdo pdo_mysql tokenizer xml \
+  && pecl channel-update pecl.php.net \
     && pecl install redis \
     && pecl install imagick \
     && pecl install mcrypt-1.0.1 \
     && docker-php-ext-enable redis \
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable mcrypt \
-    && docker-php-ext-install zip
-
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
+  && rm -rf /var/cache/apk/*
