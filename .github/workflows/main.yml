@@ -9,4 +9,4 @@ jobs:
     - uses: actions/checkout@v1
     - name: Run a multi-line script
       run: |
-        docker image build -t lklyrics-base
+        docker image build -t lklyrics-base -f Dockerfile
