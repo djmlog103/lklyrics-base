@@ -10,3 +10,6 @@ jobs:
     - name: Run a multi-line script
       run: |
         docker image build -t lklyrics-base -f Dockerfile .
+        docker login docker.pkg.github.com --username djmlog103 --password ${{ secrets.GITHUB_PERSONAL_TOKEN }}
+        docker tag lklyrics-base docker.pkg.github.com/djmlog103/lklyrics-base/lklyrics-base:latest
+        docker push docker.pkg.github.com/djmlog103/lklyrics-base/lklyrics-base:latest
