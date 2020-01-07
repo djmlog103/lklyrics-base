@@ -21,7 +21,7 @@ RUN apk --no-cache add wget \
   tini \
   openrc \ 
   busybox-initscripts \ 
-  php-pecl-redis \
+  redis \
   && docker-php-ext-install mysqli mbstring pdo pdo_mysql tokenizer xml \
   && pecl channel-update pecl.php.net \
     && pecl install redis \
